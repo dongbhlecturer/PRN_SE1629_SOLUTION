@@ -3,6 +3,7 @@ public class ProductManagement:IProduct
 {
     private Product[] lstProduct;
     private int size; //So luong phan tu that trong mang 1 chieu lstProduct
+    public Product[] LstProduct { get => lstProduct; set => lstProduct = value; }
     public ProductManagement()
     {
         this.size = 0;
@@ -20,7 +21,7 @@ public class ProductManagement:IProduct
         }
     }
 
-    public Product[] LstProduct { get => lstProduct; set => lstProduct = value; }
+    
 
     public void Add(Product p)
     {
@@ -48,7 +49,23 @@ public class ProductManagement:IProduct
 
     public bool Delete(Product p)
     {
-        throw new NotImplementedException();
+        int index = 0;
+        /*1. tim phan p do co trong mang hay khong? */
+        foreach (var item in this.lstProduct)
+        {
+            index++;
+            if(item is not null && item.Id == p.Id)
+            {
+               /*Neu tim thay roi thi xoa di*/
+               for(int i = index; i < size-1; i++)
+                {
+                    lstProduct[i] = lstProduct[i + 1];
+                }
+                lstProduct[this.size-1] = null;
+                return true;
+            }
+        }
+        return false;
     }
 
     public void Display()
