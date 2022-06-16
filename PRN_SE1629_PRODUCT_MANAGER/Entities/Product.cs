@@ -7,8 +7,11 @@ public class Product
     public string Desc { get; set; }
     public double UnitPrice { get; set; }
     public int Quantity { get; set; }
+    public readonly string NameOfProvide;
     /*2. constructors*/
-    public Product() { }
+    public Product() {
+        this.NameOfProvide = "FPT Education";
+    }
     
     public Product(int id, string productName, string desc, double unitPrice, int quantity)
     {
